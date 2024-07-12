@@ -1,16 +1,12 @@
-import {
-  ApplicationConfig,
-  importProvidersFrom,
-  provideZoneChangeDetection,
-} from '@angular/core';
+import { ApplicationConfig, provideZoneChangeDetection } from '@angular/core';
 import { provideRouter } from '@angular/router';
-import { NgxsModule } from '@ngxs/store';
+import { provideStore } from '@ngxs/store';
 import { routes } from './app.routes';
 import { AppState } from './store/app.state';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    importProvidersFrom(NgxsModule.forRoot([AppState])),
+    provideStore([AppState]),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
   ],
